@@ -4,12 +4,15 @@ function App() {
   const [americanOdds, setAmericanOdds] = useState("");
   const [decimalOdds, setDecimalOdds] = useState("");
 
+  //conversion functions
   function convertAmericanToDecimal(americanOdds) {
     if (americanOdds >= 100) {
-      setDecimalOdds(americanOdds / 100 + 1);
+      //converts american odds to decimal, then rounds it to 2 decimal places,
+      // then formats the number to remove trailing zero's
+      setDecimalOdds(Number((americanOdds / 100 + 1).toFixed(2)));
     } else if (americanOdds <= -100) {
       //code
-      setDecimalOdds(100 / Math.abs(americanOdds) + 1);
+      setDecimalOdds(Number((100 / Math.abs(americanOdds) + 1).toFixed(2)));
     } else {
       setDecimalOdds("");
     }
@@ -17,9 +20,9 @@ function App() {
 
   function convertDecimalToAmerican(decimalOdds) {
     if (decimalOdds >= 2) {
-      setAmericanOdds((decimalOdds - 1) * 100);
+      setAmericanOdds(((decimalOdds - 1) * 100).toFixed(2));
     } else if (decimalOdds > 1) {
-      setAmericanOdds(-100 * (decimalOdds - 1));
+      setAmericanOdds((-100 * (decimalOdds - 1)).toFixed(2));
     } else {
       setAmericanOdds("");
     }
@@ -54,6 +57,7 @@ function App() {
           }}
         />
       </div>
+      <button>Save Bet</button>
     </div>
   );
 }
