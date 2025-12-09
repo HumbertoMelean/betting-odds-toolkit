@@ -18,8 +18,8 @@ function App() {
   function convertDecimalToAmerican(decimalOdds) {
     if (decimalOdds >= 2) {
       setAmericanOdds((decimalOdds - 1) * 100);
-    } else if (decimalOdds < 2) {
-      setAmericanOdds(-100(decimalOdds - 1));
+    } else if (decimalOdds > 1) {
+      setAmericanOdds(-100 * (decimalOdds - 1));
     } else {
       setAmericanOdds("");
     }
