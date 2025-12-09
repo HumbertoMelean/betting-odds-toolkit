@@ -47,7 +47,11 @@ function App() {
           placeholder="Decimal Odds"
           type="number"
           value={decimalOdds}
-          onChange={convertDecimalToAmerican}
+          onChange={(e) => {
+            const inputValue = e.target.value;
+            setDecimalOdds(inputValue);
+            convertDecimalToAmerican(inputValue);
+          }}
         />
       </div>
     </div>
