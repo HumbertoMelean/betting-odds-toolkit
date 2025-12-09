@@ -6,7 +6,7 @@ function App() {
 
   function convertAmericanToDecimal(americanOdds) {
     if (americanOdds >= 100) {
-      setDecimalOdds(americanOdds / 100) + 1;
+      setDecimalOdds(americanOdds / 100 + 1);
     } else if (americanOdds <= -100) {
       //code
       setDecimalOdds(100 / Math.abs(americanOdds) + 1);
@@ -16,7 +16,13 @@ function App() {
   }
 
   function convertDecimalToAmerican(decimalOdds) {
-    console.log(decimalOdds);
+    if (decimalOdds >= 2) {
+      setAmericanOdds((decimalOdds - 1) * 100);
+    } else if (decimalOdds < 2) {
+      setAmericanOdds(-100(decimalOdds - 1));
+    } else {
+      setAmericanOdds("");
+    }
   }
 
   return (
