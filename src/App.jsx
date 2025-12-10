@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const [americanOdds, setAmericanOdds] = useState("");
   const [decimalOdds, setDecimalOdds] = useState("");
+  const [savedBets, setSavedBets] = useState([]);
 
   //conversion functions
   function convertAmericanToDecimal(americanOdds) {
@@ -26,6 +27,10 @@ function App() {
     } else {
       setAmericanOdds("");
     }
+  }
+
+  function deleteBet(idToDelete) {
+    setSavedBets((prev) => prev.filter((bet) => bet.id !== idToDelete));
   }
 
   return (
@@ -57,7 +62,30 @@ function App() {
           }}
         />
       </div>
-      <button>Save Bet</button>
+      <button
+        onClick={() => {
+          const newBet = {
+            id: Date.now(),
+            american: americanOdds,
+            decimal: decimalOdds,
+          };
+          setSavedBets((prev) => [...prev, newBet]);
+
+          console.log(newBet);
+        }}
+      >
+        Save Bet
+      </button>
+      <h3>Saved Bets</h3>
+      <ul>
+        {savedBets.map((bet) => (
+          <li key={bet.id}>
+            <input placeholder="Bet Description" />
+            American: {bet.american} - Decimal: {bet.decimal}
+            <button onClick={() => deleteBet(bet.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
