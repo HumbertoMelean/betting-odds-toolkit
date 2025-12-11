@@ -50,7 +50,7 @@ function App() {
         <p>American Odds input: {americanOdds}</p>
       </div>
       <div>
-        <p>Deciaml Odds</p>
+        <p>Decimal Odds</p>
         <input
           placeholder="Decimal Odds"
           type="number"
@@ -80,8 +80,10 @@ function App() {
       <ul>
         {savedBets.map((bet) => (
           <li key={bet.id}>
-            <input placeholder="Bet Description" />
-            American: {bet.american} - Decimal: {bet.decimal}
+            <input placeholder="Bet Name" />
+            <p>
+              American: {bet.american} | Decimal: {bet.decimal}
+            </p>
             <button onClick={() => deleteBet(bet.id)}>Delete</button>
           </li>
         ))}
