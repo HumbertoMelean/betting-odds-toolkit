@@ -4,6 +4,7 @@ function App() {
   const [americanOdds, setAmericanOdds] = useState("");
   const [decimalOdds, setDecimalOdds] = useState("");
   const [savedBets, setSavedBets] = useState([]);
+  const [betName, setBetName] = useState("");
 
   //conversion functions
   function convertAmericanToDecimal(americanOdds) {
@@ -66,6 +67,7 @@ function App() {
         onClick={() => {
           const newBet = {
             id: Date.now(),
+            name: "",
             american: americanOdds,
             decimal: decimalOdds,
           };
@@ -80,14 +82,29 @@ function App() {
       <ul>
         {savedBets.map((bet) => (
           <li key={bet.id}>
-            <input placeholder="Bet Name" />
+            <input
+              placeholder="Bet Name"
+              value={betName}
+              onChange={(e) => setBetName(e.target.value)}
+            />
             <p>
               American: {bet.american} | Decimal: {bet.decimal}
             </p>
+            <p>Current Bet Name {betName}</p>
             <button onClick={() => deleteBet(bet.id)}>Delete</button>
           </li>
         ))}
       </ul>
+      <div>
+        {savedBets.map((bet) => (
+          <>
+            <p>Bet id: {bet.id}</p>
+            <p>Bet name: {bet.name}</p>
+            <p>American Odds: {bet.american}</p>
+            <p>Decimal Odds: {bet.decimal}</p>
+          </>
+        ))}
+      </div>
     </div>
   );
 }
