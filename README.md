@@ -26,12 +26,10 @@ git clone https://github.com/your-username/odds-converter-pro.git
 cd odds-converter-pro
 npm install
 npm run dev
+```
 
------------------
+---
 
 AI generated README.me
 
 Prompt: Please update my README.md and make it fun.
-
-
-```
